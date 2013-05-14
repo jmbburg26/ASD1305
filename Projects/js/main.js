@@ -1,3 +1,22 @@
+$('#submit').on('click', function (key){
+    if(!key){
+      var userValues    = Math.floor(Math.random()*100000001);
+    }else{
+      userValues = key;
+    }
+    var userData = {};
+        userData.fname = $('#fname').val();
+        userData.lname = $('#lname').val();
+        userData.email = $('#email').val();
+        userData.subject = $('#subject').val();
+        userData.datedue = $('#datedue').val();
+        userData.notes = $('#notes').val();
+
+    localStorage.setItem(userValues, JSON.stringify(userData));
+    alert("Homework Added!");
+    console.log(userData);
+});
+/*
 $(document).on('click', '#add', function(){
     var doc = {};
     $.couch.db("asdproject").saveDoc(doc, {
@@ -42,7 +61,7 @@ $(add).on('click', '#save', function(){
   });
 });
 
-/*
+
 var urlVars = function(data){
   var urlData = $($.mobile.activePage).data("url");
   var urlParts = urlData.split('?');

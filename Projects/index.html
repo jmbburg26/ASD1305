@@ -17,10 +17,10 @@
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
 		
 		<!-- Script -->
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-		<script src="jquery.couch.js"></script>
+		<!-- <script src="js/jquery.couch.js"></script> -->
 	</head> 
 	<body> 
 
@@ -72,7 +72,7 @@
 					
 					<div data-role="fieldcontain">
 						<label for "subject">*Subject:</label>
-						<input type="text" name="email" id="email" class="required email" placeholder="ASD"/>
+						<input type="text" name="subject" id="subject" class="required" placeholder="ASD"/>
 					</div>
 					
 					<div data-role="fieldcontain">
@@ -81,12 +81,12 @@
 					</div>
 					
 					<div data-role="fieldcontain">
-						<label for "notes" id="notes">Assignment Details:</label>
+						<label for "notes">Assignment Details:</label>
 						<textarea cols="40" rows="8" name="notes" id="notes"></textarea>
 					</div>
 					
 					<div>
-						<input type="submit" value="Save My Assignment" data-inline="true" data-theme="b" />
+						<input type="submit" id="submit" value="Save My Assignment" data-inline="true" data-theme="b" />
 						<input type="reset" value="Reset" data-inline="true" data-mini="true" />
 					</div>
 				</form>
@@ -122,6 +122,6 @@
 		</div>
 		
 		<!--JavaScript-->
-		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="js/main2.js"></script>
 	</body>
 </html>
