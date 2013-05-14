@@ -28,7 +28,14 @@ $('#view').on('pageinit', function(){
 //Clear data from local storage function
 $('#clear').on('click', function(){
 	localStorage.clear();
-	alert("All saved assignments have been cleared for Local Storage.");
+	var confirmDelete = confirm("Are you sure you want to delete the assignment?");
+		if(confirmDelete){
+			localStorage.removeItem(this.key);
+			alert("Assignment was deleted!");
+			window.location.reload();
+		}else{
+			alert("Assignment was NOT deleted!");
+		}
 });
 
 
