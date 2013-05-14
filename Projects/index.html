@@ -57,22 +57,22 @@
 					
 					<div data-role="fieldcontain">
 						<label for "fname">*First Name:</label>
-						<input type="text" name="fname" id="fname" class="required" placeholder="Type first name here"/>
+						<input type="text" name="fname" id="fname" class="required" data-clear-btn="true" placeholder="Type first name here"/>
 					</div>
 					
 					<div data-role="fieldcontain">
 						<label for "lname" >*Last Name:</label>
-						<input type="text" name="lname" id="lname" class="required" placeholder="Type last name here"/>
+						<input type="text" name="lname" id="lname" class="required" data-clear-btn="true" placeholder="Type last name here"/>
 					</div>
 					
 					<div data-role="fieldcontain">
 						<label for "email">*Email:</label>
-						<input type="text" name="email" id="email" class="required email" placeholder="likethis@gmail.com"/>
+						<input type="email" name="email" id="email" class="required email" data-clear-btn="true" placeholder="likethis@gmail.com"/>
 					</div>
 					
 					<div data-role="fieldcontain">
 						<label for "subject">*Subject:</label>
-						<input type="text" name="subject" id="subject" class="required" placeholder="ASD"/>
+						<input type="text" name="subject" id="subject" class="required" data-clear-btn="true" placeholder="ASD"/>
 					</div>
 					
 					<div data-role="fieldcontain">
@@ -82,7 +82,7 @@
 					
 					<div data-role="fieldcontain">
 						<label for "notes">Assignment Details:</label>
-						<textarea cols="40" rows="8" name="notes" id="notes"></textarea>
+						<textarea cols="40" rows="8" name="notes" id="notes" data-clear-btn="true"></textarea>
 					</div>
 					
 					<div>
@@ -111,6 +111,7 @@
 				<ul id="savedList" data-role="listview">
 				</ul>
 			</div>
+			<button id="clear">Clear Assignments</button>
 			<div data-role="footer" data-position="fixed" data-id="home" data-theme="b">
 				<div data-role="navbar">
 					<ul>

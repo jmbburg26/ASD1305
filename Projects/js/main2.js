@@ -1,3 +1,4 @@
+//Save data from form into local storage function
 $('#submit').on('click', function (key){
     if(!key){
       var userValues    = Math.floor(Math.random()*100000001);
@@ -15,6 +16,19 @@ $('#submit').on('click', function (key){
     localStorage.setItem(userValues, JSON.stringify(userData));
     alert("Homework Added!");
     console.log(userData);
+});
+
+$('#view').on('pageinit', function(){
+		if(localStorage.length === 0){
+			alert("There are no assignments in Local Storage so default data has been added.");
+			//defaultData();
+		}
+});
+
+//Clear data from local storage function
+$('#clear').on('click', function(){
+	localStorage.clear();
+	alert("All saved assignments have been cleared for Local Storage.");
 });
 
 
