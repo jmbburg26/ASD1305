@@ -18,6 +18,14 @@ $('#submit').on('click', function (key){
     console.log(userData);
 });
 
+var defaultData = $.ajax({
+						    	url      : "js/data.js",
+								type     : "GET",
+								dataType : "json",
+								success  : function(data, status) {
+								console.log(status, data);    
+							}});
+
 $('#view').on('pageinit', function(){
 		if(localStorage.length === 0){
 			alert("There are no assignments in Local Storage so default data has been added.");
@@ -37,13 +45,3 @@ $('#clear').on('click', function(){
 			alert("Assignment was NOT deleted!");
 		}
 });
-
-
-/*
-$.ajax({    url      : "data.json",
-			type     : "GET",
-			dataType : "json",
-			success  : function(data, status) {
-				console.log(status, data);    
-			}});
-*/
