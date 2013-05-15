@@ -44,7 +44,7 @@ $('#view').on('pageinit', function(){
 $('#loadjson').on('click', function(){
     if(localStorage.length === 0){
       alert("There are no assignments in Local Storage so default data has been added.");
-      //defaultData();
+      defaultData();
     }
 });
 
@@ -60,3 +60,14 @@ $('#clear').on('click', function(){
       alert("Assignment was NOT deleted!");
     }
 });
+
+var defaultData = function(){
+    $.ajax({
+                url      : "data.js",    
+                type     : "GET",
+                dataType : "json",
+                success  : function(data, status) {
+                    console.log(status, data);
+                }
+            });
+};
