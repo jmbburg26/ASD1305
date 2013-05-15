@@ -23,22 +23,22 @@ $('#view').on('pageinit', function(){
             var key = localStorage.key(i);
             var item = JSON.parse(localStorage.getItem(key));
             console.log(item);
-            var makeSubList = $("<div></div>");
-            var makeSubLi = $( "<h3>"+item.datedue[1].val+"</h3>"+
-                "<p>"+item.fname[1].val+"</p>" +
-                "<p>"+item.lname[1].val+"</p>"+
-                "<p>"+item.email[1].val+"</p>" +
-                "<p>"+item.subject[1].val+"</p>" +
-                "<p>"+item.notes[1].val+"</p>" );
-            var makeLink = $("<a href='#' id='"+key+"'>Edit</a>");
+            var makeSubList = $("<li></li>");
+            var makeSubLi = $( "<h3>"+item.datedue+"</h3>"+
+                "<p>"+item.fname+"</p>" +
+                "<p>"+item.lname+"</p>"+
+                "<p>"+item.email+"</p>" +
+                "<p>"+item.subject+"</p>" +
+                "<p>"+item.notes+"</p>" );
+            var makeLink = $("<div id='"+key+"'>Edit</div>");
             makeLink.on('click', function(){
-               // console.log("This is my key: "+this.id);
+               console.log("This is my key: "+this.id);
             });
             makeLink.html(makeSubLi);
             makeSubList.append(makeLink).appendTo("#savedList");
-        }; // end for loop
-        $("ul").listview('refresh');
-    });  // end storage.on
+            $("#savedList").listview('refresh');
+        };
+    });
 
 //Function to add json data 
 $('#loadjson').on('click', function(){
@@ -54,7 +54,7 @@ $('#clear').on('click', function(){
   var confirmDelete = confirm("Are you sure you want to delete the assignment?");
     if(confirmDelete){
       localStorage.removeItem(this.key);
-      alert("Assignment was deleted!");
+      alert("All assignments have been deleted!");
       window.location.reload();
     }else{
       alert("Assignment was NOT deleted!");
