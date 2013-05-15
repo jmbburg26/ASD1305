@@ -18,18 +18,35 @@ $('#submit').on('click', function (key){
     console.log(userData);
 });
 
-var defaultData = $.ajax({
-                  url      : "js/data.js",
-                type     : "GET",
-                dataType : "json",
-                success  : function(data, status) {
-                console.log(status, data);    
-              }});
+//Display data from local storage
+$("#view").on('pageinit', function(){
+        $("#savedList").empty();
+        for (var i= 0, j=localStorage.length; i<j ; i++){
+            var key = localStorage.key(i);
+            var item = JSON.parse(localStorage.getItem(key));
+            //console.log(item);
+            var makeSubList = $("<li></li>");
+            var makeSubLi = $( "<h3>"+item.fname[1]+"</h3>"+
+                "<p><strong>"+item.lname[1]+"</strong></p>"+
+                "<p>"+item.email[1]+"</p>" +
+                "<p>"+item.subject[1]+"</p>" +
+                "<p>"+item.datedue[1]+"</p>" +
+                "<p>"+item.notes[1]+"</p>" );
+            var makeLink = $("<a href='#' id='"+key+"'>Edit</a>");
+            makeLink.on('click', function(){
+                console.log("This is my key: "+this.id);
+            });
+            makeLink.html(makeSubLi);
+            makeSubList.append(makeLink).appendTo("#savedList");
+        }; // end for loop
+        //$("ul").listview('refresh');
+    });
 
-$('#view').on('pageinit', function(){
+//Function to add json data 
+$('#loadjson').on('click', function(){
     if(localStorage.length === 0){
       alert("There are no assignments in Local Storage so default data has been added.");
-      //defaultData();
+      defaultData();
     }
 });
 
