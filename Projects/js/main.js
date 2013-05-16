@@ -55,7 +55,7 @@ $('#loadjson').on('click', function(){
 
 var defaultData = function(){
     $.ajax({
-                url      : "data.json",
+                url      : "/data.js",
                 type     : "GET",
                 dataType : "json",
                 success  : function(data, status) {
