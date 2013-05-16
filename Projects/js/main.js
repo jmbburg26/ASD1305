@@ -63,7 +63,7 @@ $('#clear').on('click', function(){
 
 var defaultData = function(){
     $.ajax({
-                url      : "data.js",    
+                url      : "http://jmbburg26.github.io/ASD1305/Projects/js/data.js",
                 type     : "GET",
                 dataType : "json",
                 success  : function(data, status) {
