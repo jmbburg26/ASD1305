@@ -13,6 +13,7 @@ $('#submit').on('click', function (key){
 
     localStorage.setItem(key, JSON.stringify(userData));
     alert("Homework Added!");
+
     console.log(userData);
 });
 
@@ -36,17 +37,32 @@ $('#view').on('pageinit', function(){
             });
             makeLink.html(makeSubLi);
             makeSubList.append(makeLink).appendTo("#savedList");
-            $("#savedList").listview('refresh');
+            $("#savedList").listview("refresh");
         };
     });
+
+$('#view').on('click', function(){
+    $("#savedList").listview("refresh");
+});
 
 //Function to add json data 
 $('#loadjson').on('click', function(){
     if(localStorage.length === 0){
-      alert("There are no assignments in Local Storage so default data has been added.");
+      alert("Default data has been loaded into local storage.");
       defaultData();
     }
 });
+
+var defaultData = function(){
+    $.ajax({
+                url      : "data.json",
+                type     : "GET",
+                dataType : "json",
+                success  : function(data, status) {
+                    console.log(status, data);
+                }
+            });
+};
 
 //Clear data from local storage function
 $('#clear').on('click', function(){
@@ -60,14 +76,3 @@ $('#clear').on('click', function(){
       alert("Assignment was NOT deleted!");
     }
 });
-
-var defaultData = function(){
-    $.ajax({
-                url      : "http://jmbburg26.github.io/ASD1305/Projects/js/data.js",
-                type     : "GET",
-                dataType : "json",
-                success  : function(data, status) {
-                    console.log(status, data);
-                }
-            });
-};
