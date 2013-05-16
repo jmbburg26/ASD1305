@@ -53,9 +53,29 @@ $('#loadjson').on('click', function(){
     }
 });
 
+var defaultData = function(key){
+    $.getJSON("data.json", function(json){
+        var key    = Math.floor(Math.random()*100000001);
+
+        var userData = {};
+            userData.fname = $('#fname').val();
+            userData.lname = $('#lname').val();
+            userData.email = $('#email').val();
+            userData.subject = $('#subject').val();
+            userData.datedue = $('#datedue').val();
+            userData.notes = $('#notes').val();
+
+        localStorage.setItem(key, JSON.stringify(userData));
+        alert("Homework Added!");
+
+        console.log(userData);
+    };
+};
+
+/*
 var defaultData = function(){
     $.ajax({
-                url      : "/data.js",
+                url      : "data.json",
                 type     : "GET",
                 dataType : "json",
                 success  : function(data, status) {
@@ -64,6 +84,7 @@ var defaultData = function(){
             });
 };
 
+*/
 //Clear data from local storage function
 $('#clear').on('click', function(){
   localStorage.clear();
