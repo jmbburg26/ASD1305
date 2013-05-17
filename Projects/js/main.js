@@ -13,13 +13,41 @@ $('#submit').on('click', function (key){
 
     localStorage.setItem(key, JSON.stringify(userData));
     alert("Homework Added!");
-
+    window.location.reload();
     console.log(userData);
 });
 
 //Display data from local storage
 $('#view').on('pageinit', function(){
-        $("#savedList").empty();
+        displayData();
+    });
+
+$('#view').on('click', function(){
+    $("#savedList").listview("refresh");
+});
+
+//Function to add json data 
+$('#loadjson').on('click', function(){
+    if(localStorage.length === 0){
+        $.ajax({
+                url      : "data.json",
+                type     : "GET",
+                dataType : "json",
+                success  : function(data, status) {
+                    console.log(status, data);
+                    displayData(data);
+                },
+                error   : function(error, parseerror) { 
+                    console.log(error, parseerror);
+                }
+            });
+        alert("Data has been added");
+    }
+});
+
+//Display data funciton
+var displayData = function(){
+    $("#savedList").empty();
         for (var i= 0, j=localStorage.length; i<j ; i++){
             var key = localStorage.key(i);
             var item = JSON.parse(localStorage.getItem(key));
@@ -39,52 +67,8 @@ $('#view').on('pageinit', function(){
             makeSubList.append(makeLink).appendTo("#savedList");
             $("#savedList").listview("refresh");
         };
-    });
-
-$('#view').on('click', function(){
-    $("#savedList").listview("refresh");
-});
-
-//Function to add json data 
-$('#loadjson').on('click', function(){
-    if(localStorage.length === 0){
-      alert("Default data has been loaded into local storage.");
-      defaultData();
-    }
-});
-
-var defaultData = function(key){
-    $.getJSON("data.json", function(json){
-        var key    = Math.floor(Math.random()*100000001);
-
-        var userData = {};
-            userData.fname = $('#fname').val();
-            userData.lname = $('#lname').val();
-            userData.email = $('#email').val();
-            userData.subject = $('#subject').val();
-            userData.datedue = $('#datedue').val();
-            userData.notes = $('#notes').val();
-
-        localStorage.setItem(key, JSON.stringify(userData));
-        alert("Homework Added!");
-
-        console.log(userData);
-    };
 };
 
-/*
-var defaultData = function(){
-    $.ajax({
-                url      : "data.json",
-                type     : "GET",
-                dataType : "json",
-                success  : function(data, status) {
-                    console.log(status, data);
-                }
-            });
-};
-
-*/
 //Clear data from local storage function
 $('#clear').on('click', function(){
   localStorage.clear();
