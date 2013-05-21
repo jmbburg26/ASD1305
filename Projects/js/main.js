@@ -21,16 +21,6 @@ var storeData = function (key){
     console.log(userData);
 };
 
-//Save data from form into local storage function
-$('#submit').on('click', function (key){
-    storeData();
-});
-
-//Display data from local storage
-$('#view').on('pageinit', function(){
-        displayData();
-    });
-
 //Display data funciton
 var displayData = function(){
     $("#savedList").empty();
@@ -47,13 +37,61 @@ var displayData = function(){
                 "<p>"+item.notes+"</p>");
             var makeLink = $("<a id='"+key+"'>Edit</a>");
             makeLink.on('click', function(){
-               console.log(item);
+               editAssignment();
             });
             makeLink.html(makeSubLi);
             makeSubList.append(makeLink).appendTo("#savedList");
             $("#savedList").listview("refresh");
         };
 };
+
+//Function to edit assignment
+var editAssignment = function(){
+    var value = localStorage.getItem(this.key);
+    var userData = JSON.parse(value);
+        
+    //populate form 
+    $('fname').val([1]);
+    $('lname').val([1]);
+    $('email').val([1]);
+    $('subject').val([1]);
+    $('datedue').val([1]);
+    $('notes').val([1]);   
+        
+    //Remove first listener from input "save assignment"
+    $('#submit').unbind("click", storeData);
+        
+    //Change save button to edit
+    $('#submit').val("Edit Assignment");
+    var editSave = $('#submit').bind();
+        
+    //Save the key value established as a property as a function of the editSave event
+    //so we can use that value when we save the data we edited.
+    editSave.on("click", storeData);
+    editSave.key = this.key;
+};
+
+//Function to delete a single assignment
+function deleteAssignment(){
+     var confirmDelete = confirm("Are you sure you want to delete the assignment?");
+    if(confirmDelete){
+        localStorage.removeItem(this.key);
+        alert("Assignment was deleted!");
+        window.location.reload();
+     }else{
+        alert("Assignment was NOT deleted!");
+    }
+};
+
+//Save data from form into local storage function call
+$('#submit').on('click', function (key){
+    storeData();
+});
+
+//Display data from local storage
+$('#view').on('pageinit', function(){
+        displayData();
+});
 
 $('#view').on('click', function(){
     $("#savedList").listview("refresh");
@@ -77,34 +115,6 @@ $('#loadjson').on('click', function(){
         alert("Data has been added");
     }
 });
-
-//Function to edit assignment
-var editAssignment = function(){
-        var value = localStorage.getItem(this.key);
-        var userData = JSON.parse(value);
-        
-        //populate form 
-        $('fname').val([1]);
-        $('lname').val([1]);
-        $('email').val([1]);
-        $('subject').val([1]);
-        $('datedue').val([1]);
-        $('notes').val([1]);   
-        
-        //Remove first listener from input "save assignment"
-        $('#submit').unbind("click", storeData);
-        
-        //Change save button to edit
-        $('#submit').val("Edit Assignment");
-        var editSave = $('#submit').bind();
-        
-        //Save the key value established as a property as a function of the editSave event
-        //so we can use that value when we save the data we edited.
-        editSave.on("click", storeData);
-        editSave.key = this.key;
-        
-    }
-
 
 //Clear data from local storage function
 $('#clear').on('click', function(){
