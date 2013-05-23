@@ -12,71 +12,71 @@
 		"lname": "Brandenburg",
 		"email": "jmbburg26@gmail.com",
 		"subject": "ASD",
-		"datedue": ["2013-01-31",
+		"datedue": "2013-01-31",
 		"notes": "Last project!!!"
 	},
 	"assignment3": {
-		"fname": ["First Name:", "Allan"],
-		"lname": ["Last Name:", "Bladorn"],
-		"email": ["Email:", "anb122410@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-04-7"],
-		"notes": ["Notes:","Is it over?"]
+		"fname": "Allan",
+		"lname": "Bladorn",
+		"email": "anb122410@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-04-7",
+		"notes": "Is it over?"
 	},
 	"assignment4": {
-		"fname": ["First Name:", "Doug"],
-		"lname": ["Last Name:", "Brandenburg"],
-		"email": ["Email:", "papabnsd@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-01-31"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "Doug",
+		"lname": "Brandenburg",
+		"email": "papabnsd@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-01-31",
+		"notes": "Last project!!!"
 	},
 	"assignment5": {
-		"fname": ["First Name:", "Zach"],
-		"lname": ["Last Name:", "Brandenburg"],
-		"email": ["Email:", "zcbburg116@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-02-28"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "Zach",
+		"lname": "Brandenburg",
+		"email": "zcbburg116@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-02-28",
+		"notes": "Last project!!!"
 	},
 	"assignment6": {
-		"fname": ["First Name:", "Sarah"],
-		"lname": ["Last Name:", "Brandenburg"],
-		"email": ["Email:", "jmbburg26@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-01-31"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "Sarah",
+		"lname": "Brandenburg",
+		"email": "jmbburg26@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-01-31",
+		"notes": "Last project!!!"
 	},
 	"assignment7": {
-		"fname": ["First Name:", "John"],
-		"lname": ["Last Name:", "Smith"],
-		"email": ["Email:", "jmbburg26@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-01-31"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "John",
+		"lname": "Smith",
+		"email": "jmbburg26@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-01-31",
+		"notes": "Last project!!!"
 	},
 	"assignment8": {
-		"fname": ["First Name:", "John"],
-		"lname": ["Last Name:", "Doe"],
-		"email": ["Email:", "jmbburg26@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-01-31"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "John",
+		"lname": "Doe",
+		"email": "jmbburg26@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-01-31",
+		"notes": "Last project!!!"
 	},
 	"assignment9": {
-		"fname": ["First Name:", "Jane"],
-		"lname": ["Last Name:", "Smith"],
-		"email": ["Email:", "jmbburg26@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-01-31"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "Jane",
+		"lname": "Smith",
+		"email": "jmbburg26@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-01-31",
+		"notes": "Last project!!!"
 	},
 	"assignment10": {
-		"fname": ["First Name:", "Jane"],
-		"lname": ["Last Name:", "Doe"],
-		"email": ["Email:", "jmbburg26@gmail.com"],
-		"subject": ["Subject:", "ASD"],
-		"datedue": ["Due Date:", "2013-01-31"],
-		"notes": ["Notes:","Last project!!!"]
+		"fname": "Jane",
+		"lname": "Doe",
+		"email": "jmbburg26@gmail.com",
+		"subject": "ASD",
+		"datedue": "2013-01-31",
+		"notes": "Last project!!!"
 	},
 }
