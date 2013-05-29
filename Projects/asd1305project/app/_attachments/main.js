@@ -67,6 +67,6 @@ var urlVars = function(){
 
 $(document).on('pageinit', '#assignments', function(){
 	var assignment = urlVars()["assignment"];
-	//var urlData = $(this).data("url"):
-	console.log(assignment);		
+	var urlData = $(this).data("url");
+	console.log(assignment);
 });
