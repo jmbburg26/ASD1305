@@ -1,14 +1,42 @@
-//Store data into local storage function
-var storeData = function (key){
-    if(!key){
-            var userValues      = Math.floor(Math.random()*100000001);
-        }else{
-            userValues = key;
-        }
-      
-    var key    = Math.floor(Math.random()*100000001);
+$(document).on('pageinit', '#home', '#assignments', function(){
 
+	//Display data from CouchDB as a listview with links to individual pages
+	$('#view').on('pageinit', function(){
+		$.couch.db("asd1305project").view("asd1305app/assignments", {
+			success: function(data){
+				//console.log(data);
+				$('#savedList').empty();
+				$.each(data.rows, function(index, assignments){
+						//console.log(assignments);
+						var fname = assignments.value.fname;
+						var lname = assignments.value.lname;
+						var email = assignments.value.email;
+						var subject = assignments.value.subject;
+						var datedue = assignments.value.date;
+						var notes = assignments.value.notes;
+						//console.log(datedue);
+						$('#savedList').append(
+							$('<li>').append(
+								$('<a>').attr("href", "assignments.html?assignments=" + assignments.value.date)
+									.text(subject + ": " + datedue)
+							)
+						);
+					});
+					$('#savedList').listview('refresh');
+			}
+		});
+	});	
+});
+
+//Save data from form into CouchDB function call
+$('#submit').on('click', function (key){
+    storeData();
+});
+
+//Function to save data into CouchDb
+var storeData = function (){
     var userData = {};
+    	userData._id = "assignment" + $('#_id').val();
         userData.fname = $('#fname').val();
         userData.lname = $('#lname').val();
         userData.email = $('#email').val();
@@ -16,9 +44,29 @@ var storeData = function (key){
         userData.datedue = $('#datedue').val();
         userData.notes = $('#notes').val();
 
-    localStorage.setItem(key, JSON.stringify(userData));
-    alert("Homework Added!");
+    $.couch.db("asd1305project").saveDoc(userData, {
+    	success: function(){
+    		alert("Homework Added!");
+    	}
+    });
+    
     console.log(userData);
+};
+
+
+/*
+var urlVars = function(){
+	var urlData = $($.mobile.activePage).data("url");
+	var urlParts = urlData.split('?');
+		var urlPairs = urlParts[1].split('&');
+		var urlValues = {};
+		for (var pair in urlPairs){
+			var keyValue = urlPairs[pair].split('=');
+			var key = decodeURIComponent(keyValue[0]);
+			var value = decodeURIComponent(keyValue[1]);
+			urlValues[key] = value;
+		}
+		return urlValues;
 };
 
 //Display data funciton
@@ -45,86 +93,15 @@ var displayData = function(){
         };
 };
 
-//Function to edit assignment
-var editAssignment = function(){
-    var value = localStorage.getItem(this.key);
-    var userData = JSON.parse(value);
-        
-    //populate form 
-    $('fname').val([1]);
-    $('lname').val([1]);
-    $('email').val([1]);
-    $('subject').val([1]);
-    $('datedue').val([1]);
-    $('notes').val([1]);   
-        
-    //Remove first listener from input "save assignment"
-    $('#submit').unbind("click", storeData);
-        
-    //Change save button to edit
-    $('#submit').val("Edit Assignment");
-    var editSave = $('#submit').bind();
-        
-    //Save the key value established as a property as a function of the editSave event
-    //so we can use that value when we save the data we edited.
-    editSave.on("click", storeData);
-    editSave.key = this.key;
-};
-
 //Function to delete a single assignment
-function deleteAssignment(){
-     var confirmDelete = confirm("Are you sure you want to delete the assignment?");
-    if(confirmDelete){
-        localStorage.removeItem(this.key);
-        alert("Assignment was deleted!");
-        window.location.reload();
-     }else{
-        alert("Assignment was NOT deleted!");
-    }
-};
-
-//Save data from form into local storage function call
-$('#submit').on('click', function (key){
-    storeData();
+$('#delete').on('click', function(){
+  $.couch.db("asd1305project")removeDoc({
+  	_id : id,
+  	_rev : rev
+  	},{
+  	success: function(){
+  		alert("Assignment was deleted!");
+  	}
+  })
 });
-
-//Display data from local storage
-$('#view').on('pageinit', function(){
-        displayData();
-});
-
-$('#view').on('click', function(){
-    $("#savedList").listview("refresh");
-});
-
-//Function to add json data 
-$('#loadjson').on('click', function(){
-    if(localStorage.length === 0){
-        $.ajax({
-                url      : "data.json",
-                type     : "GET",
-                dataType : "json",
-                success  : function(data, status) {
-                    console.log(status, data);
-                    displayData(data);
-                },
-                error   : function(error, parseerror) { 
-                    console.log(error, parseerror);
-                }
-            });
-        alert("Data has been added");
-    }
-});
-
-//Clear data from local storage function
-$('#clear').on('click', function(){
-  localStorage.clear();
-  var confirmDelete = confirm("Are you sure you want to delete the assignment?");
-    if(confirmDelete){
-      localStorage.removeItem(this.key);
-      alert("All assignments have been deleted!");
-      window.location.reload();
-    }else{
-      alert("Assignment was NOT deleted!");
-    }
-});
+*/
