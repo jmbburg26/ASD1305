@@ -1,3 +1,28 @@
+//Create data from form into CouchDB function call
+$('#submit').on('click', function (key){
+    storeData();
+});
+
+//Function to save data into CouchDb
+var storeData = function (){
+    var userData = {};
+    	userData._id = "assignment" + $('#_id').val();
+        userData.fname = $('#fname').val();
+        userData.lname = $('#lname').val();
+        userData.email = $('#email').val();
+        userData.subject = $('#subject').val();
+        userData.datedue = $('#datedue').val();
+        userData.notes = $('#notes').val();
+
+    $.couch.db("asd1305project").saveDoc(userData, {
+    	success: function(){
+    		alert("Homework Added!");
+    	}
+    });
+    
+    console.log(userData);
+};
+
 //Display data from CouchDB as a listview with links to individual pages
 $('#view').on('pageinit', function(){
 	$.couch.db("asd1305project").view("asd1305app/assignments", {
@@ -45,28 +70,3 @@ $(document).on('pageinit', '#assignments', function(){
 	//var urlData = $(this).data("url"):
 	console.log(assignment);		
 });
-
-//Save data from form into CouchDB function call
-$('#submit').on('click', function (key){
-    storeData();
-});
-
-//Function to save data into CouchDb
-var storeData = function (){
-    var userData = {};
-    	userData._id = "assignment" + $('#_id').val();
-        userData.fname = $('#fname').val();
-        userData.lname = $('#lname').val();
-        userData.email = $('#email').val();
-        userData.subject = $('#subject').val();
-        userData.datedue = $('#datedue').val();
-        userData.notes = $('#notes').val();
-
-    $.couch.db("asd1305project").saveDoc(userData, {
-    	success: function(){
-    		alert("Homework Added!");
-    	}
-    });
-    
-    console.log(userData);
-};
