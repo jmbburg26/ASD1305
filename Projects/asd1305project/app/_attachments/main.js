@@ -15,7 +15,7 @@ $('#view').on('pageinit', function(){
 					//console.log(datedue);
 					$('#savedList').append(
 						$('<li id="assignData">').append(
-							$('<a id="asignLink">').attr("href", "assignments.html?assignments=" + assignments.value.subject)
+							$('<a id="assignLink">').attr("href", "assignments.html?assignments=" + assignments.value.subject)
 								.text(subject + ": " + datedue)
 						)
 					);
