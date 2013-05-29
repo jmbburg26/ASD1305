@@ -52,6 +52,7 @@ $('#view').on('pageinit', function(){
 
 var urlVars = function(){
 	var urlData = $($.mobile.activePage).data("url");
+	console.log(urlData);
 	var urlParts = urlData.split('?');
 	var urlPairs = urlParts[1].split('&');
 	var urlValues = {};
