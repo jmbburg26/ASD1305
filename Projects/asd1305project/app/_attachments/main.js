@@ -50,8 +50,11 @@ $('#view').on('pageinit', function(){
 	});
 });	
 
-var urlVars = function(){
-	var urlData = $($.mobile.activePage).data("url");
+
+
+//Display data from CouchDB as a listview with links to individual pages
+$(document).on('pageinit', '#assignments', function(){
+	var urlData = $(this).data("url");
 	console.log(urlData);
 	var urlParts = urlData.split('?');
 	var urlPairs = urlParts[1].split('&');
@@ -62,12 +65,33 @@ var urlVars = function(){
 		var value = decodeURIComponent(keyValue[1]);
 		urlValues[key] = value;
 		}
-		return urlValues;
-		//console.log(urlValues);
-};
-
-$(document).on('pageinit', '#assignments', function(){
-	var assignment = urlVars()["assignment"];
-	var urlData = $(this).data("url");
-	console.log(assignment);
+		//return urlValues;
+		console.log(urlValues);
 });
+
+$('#assignmentDetails').on('pageinit', function(){
+	$.couch.db("asd1305project").view("asd1305app/assignments", {
+		key: urlValues['id'],
+		success: function(data){
+			displayData();
+			console.log(data);
+		}
+	});
+});
+
+//Destroy data from form in CouchDB function call
+$('#delete').on('click', function (key){
+    clearWork();
+});
+
+//Destroy function to remove single item from the DB
+var clearWork = function(){
+	$.couch.db("asd1305project").removeDoc({
+		_id		:	id,
+		_rev 	:	rev
+		},{
+			success: function(data){
+			alert("Assignment was deleted!");
+			}
+	});
+};
