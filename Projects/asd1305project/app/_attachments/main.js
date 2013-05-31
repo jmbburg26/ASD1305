@@ -23,33 +23,64 @@ var storeData = function (){
     console.log(userData);
 };
 
+
 //Display data from CouchDB as a listview with links to individual pages
 $('#view').on('pageinit', function(){
 	$.couch.db("asd1305project").view("asd1305app/assignments", {
 		success: function(data){
-			//console.log(data);
+			//console.log(data); //Logs out the entire DB
 			$('#savedList').empty();
 			$.each(data.rows, function(index, assignments){
-					//console.log(assignments);
-					var fname = assignments.value.fname;
-					var lname = assignments.value.lname;
-					var email = assignments.value.email;
-					var subject = assignments.value.subject;
-					var datedue = assignments.value.date;
-					var notes = assignments.value.notes;
-					//console.log(datedue);
-					$('#savedList').append(
-						$('<li id="assignData">').append(
-							$('<a id="assignLink">').attr("href", "assignments.html?assignments=" + assignments.value.subject)
-								.text(subject + ": " + datedue)
+				//console.log(assignments);
+				var fname = assignments.value.fname;
+				var lname = assignments.value.lname;
+				var email = assignments.value.email;
+				var subject = assignments.value.subject;
+				var datedue = assignments.value.date;
+				var notes = assignments.value.notes;
+				//console.log(datedue);
+				//console.log(assignments);
+				$('#savedList').append(
+					$('<li id="assignData">').append(
+						$('<a id="assignLink" >').attr("href", "assignments.html?assignments=" + assignments.value.subject)
+							.text("Due on " + datedue)                		
 						)
-					);
-				});
-				$('#savedList').listview('refresh');
+					)
+			});
+			$('#savedList').listview('refresh');
 		}
 	});
-});	
+});		
 
+
+$(document).on('pageinit', '#assignments', function(){
+	$.couch.db("asd1305project").view("asd1305app/assignments", {
+		success: function(data){
+			console.log(data); //Logs out the entire DB
+			$('#assignmentDetails').empty();
+			$.each(data.rows, function(index, assignments){
+				//console.log(assignments);
+				var userData = 
+				{
+				   "fname": assignments.value.fname,
+				   "lname": assignments.value.lname,
+				   "email": assignments.value.email,
+				   "subject": assignments.value.subject,
+				   "datedue": assignments.value.date,
+				   "notes": assignments.value.notes
+				}
+				console.log(userData);
+				$('#assignmentDetails').append(
+					$('<li id="assignData">').append(
+						$('<a id="assignLink" >').attr("href", "")
+							.text("Due on " + datedue)                		
+						)
+					)
+			});
+			$('#assignmentDetails').listview('refresh');
+		}
+	});
+});
 
 
 //Display data from CouchDB as a listview with links to individual pages
@@ -65,27 +96,20 @@ $(document).on('pageinit', '#assignments', function(){
 		var value = decodeURIComponent(keyValue[1]);
 		urlValues[key] = value;
 		}
-		//return urlValues;
+		urlValues;
 		console.log(urlValues);
+	
 });
 
-$('#assignmentDetails').on('pageinit', function(){
-	$.couch.db("asd1305project").view("asd1305app/assignments", {
-		key: urlValues['id'],
-		success: function(data){
-			displayData();
-			console.log(data);
-		}
-	});
-});
+/*
 
 //Destroy data from form in CouchDB function call
-$('#delete').on('click', function (key){
-    clearWork();
+$('#deleteAll').on('click', function (key){
+    clearAll();
 });
 
-//Destroy function to remove single item from the DB
-var clearWork = function(){
+//Destroy function to remove ALL items from the DB
+var clearAll = function(){
 	$.couch.db("asd1305project").removeDoc({
 		_id		:	id,
 		_rev 	:	rev
@@ -95,3 +119,4 @@ var clearWork = function(){
 			}
 	});
 };
+*/
